@@ -5,8 +5,9 @@
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 	<script type="text/javascript">
 
-		var agentToken = "fc8a93e846244816b5a848a6c36164a7";
-		var server = "https://console.api.ai";
+		var accessToken = "<your agent access token>";
+		var subscriptionKey = "<your agent subscription key>";
+		var baseUrl = "https://api.api.ai/v1/";
 
 		$(document).ready(function() {
 			$("#input").keypress(function(event) {
@@ -71,11 +72,12 @@
 			var text = $("#input").val();
 			$.ajax({
 				type: "POST",
-				url: server + "/api/query/",
+				url: baseUrl + "query/",
 				contentType: "application/json; charset=utf-8",
 				dataType: "json",
 				headers: {
-					"Authorization": "Bearer " + agentToken
+					"Authorization": "Bearer " + accessToken,
+					"ocp-apim-subscription-key": subscriptionKey
 				},
 				data: JSON.stringify({ q: text, lang: "en" }),
 
